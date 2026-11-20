@@ -2,7 +2,7 @@
 
 A full-stack issue tracking and project management application that helps teams organize projects, create issues, and track development progress.
 
-🌐 **Live Demo:** [ThreadLine](https://issue-flow-coral.vercel.app/)
+🌐 **Live Demo:** [ThreadLine](https://threadline-flow.vercel.app/)
 
 ---
 
@@ -53,6 +53,7 @@ ThreadLine/
 │   │   └── ...
 │   ├── public/
 │   └── package.json
+|   └── vercel.json
 │
 ├── backend/
 │   ├── src/
@@ -134,7 +135,7 @@ npm run dev
 
 ## Deployment
 
-- **Frontend:** [Vercel](https://issue-flow-coral.vercel.app/)
+- **Frontend:** [Vercel](https://threadline-flow.vercel.app/)
 - **Backend API:** [ThreadLine API](https://issue-flow-hc3p.vercel.app/api/health)
 - **Database:** MongoDB Atlas
 
