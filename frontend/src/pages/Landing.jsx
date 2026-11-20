@@ -120,7 +120,7 @@ function Landing() {
           <h1>
             Bring your work
             <br />
-            <span style={{ color: "#c41c43e7" }}>in the flow.</span>
+            <span style={{ color: "#c41c43e7" }}>into the flow.</span>
           </h1>
 
           <p className="hero-description">
