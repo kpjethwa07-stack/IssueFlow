@@ -1,13 +1,10 @@
-
+import Brand from "../components/Brand";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowRight, Layers3 } from "lucide-react";
-
+import { ArrowRight } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
-import Brand from "../components/Brand";
-import Button from "../components/Button";
-import Input from "../components/Input";
 import "./Auth.css";
+import "./Login.css";
 
 export default function Login() {
   const { login } = useAuth();
@@ -15,6 +12,8 @@ export default function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [remember, setRemember] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -25,10 +24,11 @@ export default function Login() {
 
     try {
       await login(email, password);
-      navigate("/");
+      navigate("/dashboard");
     } catch (err) {
       setError(
-        err.response?.data?.message || "Login failed. Check your credentials."
+        err.response?.data?.message ||
+          "Login failed. Check your credentials."
       );
     } finally {
       setLoading(false);
@@ -36,74 +36,123 @@ export default function Login() {
   };
 
   return (
-    <div className="auth-page">
-      <section className="auth-visual">
-        <Brand light />
+    <div className="auth-page auth-login-page">
+      <div className="auth-background" />
 
-        <div className="auth-visual-content">
-          <Layers3 size={38} color="#67e8f9" />
-          <h1>
-            Work smarter.
-            <br />
-            Build <span>better.</span>
-          </h1>
-          <p>
-            Bring your projects, issues, and team progress into one
-            focused workspace.
-          </p>
-        </div>
+     <div className="auth-brand">
+  <Brand />
+</div>
 
-        <div className="auth-visual-footer">
-          IssueFlow · Project management, made clearer.
-        </div>
-      </section>
-
-      <section className="auth-form-side">
-        <div className="auth-card">
-          <div className="auth-mobile-brand">
-            <Brand to="/login" />
+      <main className="auth-main">
+        <section className="auth-intro">
+          <div className="auth-eyebrow">
+            Your work, connected
           </div>
 
-          <h2>Welcome back</h2>
-          <p className="auth-subtitle">
-            Sign in to continue to your workspace.
-          </p>
+          <h1>
+            Bring your
+            <br />
+            work <span>together.</span>
+          </h1>
 
-          {error && <div className="auth-alert">{error}</div>}
+          <p>
+            A clearer space for issues, updates and team
+            conversations. Everything your team needs to keep
+            moving, in one place.
+          </p>
+        </section>
+
+        <section className="auth-card">
+          <div className="auth-card-heading">
+            <h2>Welcome back.</h2>
+            <p className="auth-subtitle">
+              Sign in to access your ThreadLine workspace.
+            </p>
+          </div>
+
+          {error && (
+            <div className="auth-alert">
+              {error}
+            </div>
+          )}
 
           <form className="auth-form" onSubmit={handleSubmit}>
-            <Input
-              id="login-email"
-              label="Email address"
-              type="email"
-              placeholder="you@example.com"
-              autoComplete="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+            <div className="auth-field">
+              <label htmlFor="login-email">
+                Email address
+              </label>
 
-            <Input
-              id="login-password"
-              label="Password"
-              type="password"
-              placeholder="Enter your password"
-              autoComplete="current-password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+              <input
+                id="login-email"
+                type="email"
+                placeholder="you@example.com"
+                autoComplete="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
 
-            <Button type="submit" className="btn-full" loading={loading}>
-              Sign in <ArrowRight size={17} />
-            </Button>
+            <div className="auth-field">
+              <label htmlFor="login-password">
+                Password
+              </label>
+
+              <div className="auth-password-wrap">
+                <input
+                  id="login-password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter your password"
+                  autoComplete="current-password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+
+                <button
+                  type="button"
+                  className="auth-password-toggle"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? "Hide" : "Show"}
+                </button>
+              </div>
+            </div>
+
+            <div className="auth-options">
+              <label className="auth-remember">
+                <input
+                  type="checkbox"
+                  checked={remember}
+                  onChange={(e) => setRemember(e.target.checked)}
+                />
+                Remember me
+              </label>
+            </div>
+
+            <button
+              type="submit"
+              className="auth-submit"
+              disabled={loading}
+            >
+              <span>
+                {loading ? "Signing in..." : "Sign in"}
+              </span>
+
+              {!loading && <ArrowRight size={17} />}
+            </button>
           </form>
 
           <div className="auth-switch">
-            Don't have an account? <Link to="/register">Create one</Link>
+            New to ThreadLine?
+            <Link to="/register">Create an account</Link>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
+
+      <div className="auth-page-footer">
+        © 2026 ThreadLine
+      </div>
     </div>
   );
 }

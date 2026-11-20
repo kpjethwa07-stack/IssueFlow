@@ -1,12 +1,9 @@
 
+import Brand from "../components/Brand";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowRight, Layers3 } from "lucide-react";
-
+import { ArrowRight } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
-import Brand from "../components/Brand";
-import Button from "../components/Button";
-import Input from "../components/Input";
 import "./Auth.css";
 
 export default function Register() {
@@ -47,12 +44,18 @@ export default function Register() {
   };
 
   return (
-    <div className="auth-page">
-      <section className="auth-visual">
-        <Brand light />
+    <div className="auth-page auth-register-page">
+      <div className="auth-background" />
 
-        <div className="auth-visual-content">
-          <Layers3 size={38} color="#67e8f9" />
+      <div className="auth-brand">
+        <Brand />
+      </div>
+
+      <main className="auth-main">
+        <section className="auth-intro">
+          <span className="auth-eyebrow">
+            A clearer way to work
+          </span>
 
           <h1>
             Start building
@@ -64,82 +67,118 @@ export default function Register() {
             Create your workspace, organize projects, and track
             everything that needs to get done.
           </p>
-        </div>
+        </section>
 
-        <div className="auth-visual-footer">
-          IssueFlow · Project management, made clearer.
-        </div>
-      </section>
+        <section className="auth-card">
+          <div className="auth-card-heading">
+            <span className="auth-card-kicker">
+              GET STARTED
+            </span>
 
-      <section className="auth-form-side">
-        <div className="auth-card">
-          <div className="auth-mobile-brand">
-            <Brand to="/register" />
+            <h2>Create account</h2>
+
+            <p className="auth-subtitle">
+              Get started with your personal workspace.
+            </p>
           </div>
 
-          <h2>Create account</h2>
-          <p className="auth-subtitle">
-            Get started with your personal workspace.
-          </p>
-
-          {error && <div className="auth-alert">{error}</div>}
+          {error && (
+            <div className="auth-alert">
+              {error}
+            </div>
+          )}
 
           <form className="auth-form" onSubmit={handleSubmit}>
-            <Input
-              id="register-name"
-              label="Full name"
-              placeholder="Your name"
-              autoComplete="name"
-              required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
+            <div className="auth-field">
+              <label htmlFor="register-name">
+                Full name
+              </label>
 
-            <Input
-              id="register-username"
-              label="Username"
-              placeholder="e.g. kaushal_07"
-              autoComplete="username"
-              required
-              minLength={3}
-              maxLength={20}
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
+              <input
+                id="register-name"
+                type="text"
+                placeholder="Your name"
+                autoComplete="name"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
 
-            <Input
-              id="register-email"
-              label="Email address"
-              type="email"
-              placeholder="you@example.com"
-              autoComplete="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+            <div className="auth-field">
+              <label htmlFor="register-username">
+                Username
+              </label>
 
-            <Input
-              id="register-password"
-              label="Password"
-              type="password"
-              placeholder="Create a password"
-              autoComplete="new-password"
-              minLength={6}
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+              <input
+                id="register-username"
+                type="text"
+                placeholder="e.g. Alex7"
+                autoComplete="username"
+                minLength={3}
+                maxLength={20}
+                required
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
 
-            <Button type="submit" className="btn-full" loading={loading}>
-              Create account <ArrowRight size={17} />
-            </Button>
+            <div className="auth-field">
+              <label htmlFor="register-email">
+                Email address
+              </label>
+
+              <input
+                id="register-email"
+                type="email"
+                placeholder="you@example.com"
+                autoComplete="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            <div className="auth-field">
+              <label htmlFor="register-password">
+                Password
+              </label>
+
+              <input
+                id="register-password"
+                type="password"
+                placeholder="Create a password"
+                autoComplete="new-password"
+                minLength={6}
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+
+              <span className="auth-field-hint">
+                Use at least 6 characters.
+              </span>
+            </div>
+
+            <button
+              type="submit"
+              className="auth-submit"
+              disabled={loading}
+            >
+              <span>
+                {loading ? "Creating account..." : "Create account"}
+              </span>
+
+              {!loading && <ArrowRight size={17} />}
+            </button>
           </form>
 
           <div className="auth-switch">
-            Already registered? <Link to="/login">Sign in</Link>
+            Already registered?
+            <Link to="/login">Sign in</Link>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
     </div>
   );
 }

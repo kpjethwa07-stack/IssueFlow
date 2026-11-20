@@ -1,0 +1,68 @@
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.brand-svg {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  display: block;
+}
+
+/* Complete ThreadLine wordmark */
+.brand-name {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+
+  background: linear-gradient(
+    110deg,
+    #32113f 0%,
+    #64204f 25%,
+    #a52d63 50%,
+    #d44865 75%,
+    #32113f 100%
+  );
+
+  background-size: 250% 100%;
+  background-position: 0% 50%;
+
+  color: #32113f;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  animation: threadline-gradient 5s ease-in-out infinite;
+}
+
+@keyframes threadline-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-name {
+    animation: none;
+    background-position: 50% 50%;
+  }
+}
+.brand .brand-name {
+  font-size: 28px !important;
+  line-height: 1.2;
+  font-weight: 800;
+}
