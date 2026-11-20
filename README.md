@@ -1,8 +1,8 @@
-# IssueFlow
+# ThreadLine
 
 A full-stack issue tracking and project management application that helps teams organize projects, create issues, and track development progress.
 
-🌐 **Live Demo:** [IssueFlow](https://issue-flow-coral.vercel.app/)
+🌐 **Live Demo:** [ThreadLine](https://issue-flow-coral.vercel.app/)
 
 ---
 
@@ -44,7 +44,7 @@ A full-stack issue tracking and project management application that helps teams 
 ## Project Structure
 
 ```text
-IssueFlow/
+ThreadLine/
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
@@ -74,8 +74,8 @@ IssueFlow/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/kpjethwa07-stack/IssueFlow.git
-cd IssueFlow
+git clone https://github.com/kpjethwa07-stack/ThreadLine.git
+cd ThreadLine
 ```
 
 ### 2. Setup Backend
@@ -135,7 +135,7 @@ npm run dev
 ## Deployment
 
 - **Frontend:** [Vercel](https://issue-flow-coral.vercel.app/)
-- **Backend API:** [IssueFlow API](https://issue-flow-hc3p.vercel.app/api/health)
+- **Backend API:** [ThreadLine API](https://issue-flow-hc3p.vercel.app/api/health)
 - **Database:** MongoDB Atlas
 
 ---
